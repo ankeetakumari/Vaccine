@@ -1,0 +1,74 @@
+﻿@model List<VaccineManagementSystem.Models.VaccineSlotsTbl>
+@{
+    Layout = "_Layout";
+}
+<div class="container mt-5">
+    <h1 class="text-center text-white bg-primary py-3 rounded">List Of Slots Booking</h1>
+    <style>
+        body {
+            background-image: url('https://g.foolcdn.com/editorial/images/787474/vaccine-with-world-map.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+    </style>
+    <div class="table-responsive bg-light p-4 rounded shadow">
+        <table class="table table-hover table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Slot ID</th>
+                    <th>User ID</th>
+                    <th>Family Member ID</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.SId)</td>
+                            <td>@Html.DisplayFor(modelItem => item.BookedByUserId)</td>
+                            <td>@Html.DisplayFor(modelItem => item.BookedForFamilyMemberId)</td>
+                            <td>@Html.DisplayFor(modelItem => item.YearDate)</td>
+                            <td>@Html.DisplayFor(modelItem => item.SlotTime)</td>
+                            <td>
+                                @Html.DropDownList("IsBooked",
+                                         new List<SelectListItem>
+                        {
+                        new SelectListItem { Text = "Booked", Value = "1" },
+                        // new SelectListItem { Text = "Not Booked", Value = "0" }
+                        })
+                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.City)</td>
+                            <td>@Html.DisplayFor(modelItem => item.State)</td>
+                            <td>
+                                <a asp-action="RescheduleSlot" asp-route-id="@item.SId" class="btn btn-primary btn-sm">Reschedule</a>
+                                <form method="post" class="d-inline">
+                                    <input type="submit" value="Delete" asp-action="DeleteS" class="btn btn-danger btn-sm" />
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="9" class="text-center">No data available</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="mt-4 d-flex justify-content-between">
+        <a asp-controller="Account" asp-action="BookSlot" class="btn btn-success">Book Slot</a>
+        <a asp-controller="Account" asp-action="AddFamilyMember" class="btn btn-info">Add Member</a>
+        <a asp-controller="Account" asp-action="display" class="btn btn-danger">Back to Home</a>
+    </div>
+</div>

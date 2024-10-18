@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Download Vaccination Certificates";
+
+    var vaccineHistoryList = ViewBag.VaccineHistoryList as List<dynamic>;
+}
+
+<h2>Download Vaccination Certificates</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Family Member ID</th>
+            <th>Vaccine Slot ID</th>
+            <th>Vaccine Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (vaccineHistoryList != null && vaccineHistoryList.Any())
+        {
+            foreach (var record in vaccineHistoryList)
+            {
+                <tr>
+                    <td>@record.UserId</td>
+                    <td>@record.FamilyMemberId?.ToString() ?? "N/A"</td>
+                    <td>@record.VaccineSlotId</td>
+                    <td>@record.VaccineDate.ToShortDateString()</td>
+                    <td>
+                        <a asp-controller="Certificate" asp-action="DownloadCertificate" asp-route-id="@record.VaccineSlotId">Download</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5">No vaccination records found.</td>
+            </tr>
+        }
+    </tbody>
+</table>

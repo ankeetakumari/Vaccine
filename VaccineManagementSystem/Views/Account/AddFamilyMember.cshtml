@@ -1,0 +1,139 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+@model VaccineManagementSystem.Models.FamilyMembersTbl
+
+<form method="post" id="familyMemberForm">
+    <div class="container mt-5">
+        <h2 class="text-center text-white bg-primary py-3 rounded">Add Family Member</h2>
+        <style>
+            body {
+                background-image: url('https://g.foolcdn.com/editorial/images/787474/vaccine-with-world-map.jpg');
+                background-size: cover;
+                background-position: center;
+                color: white;
+            }
+        </style>
+        <div class="bg-light p-4 rounded shadow">
+            <div class="form-group">
+                <b><label asp-for="MName" class="control-label">Enter Family Member Name:</label></b>
+                <input type="text" asp-for="MName" class="form-control" style="background-color:aliceblue" />
+                <span asp-validation-for="MName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <b><label asp-for="MAadhaarNum" class="control-label">Enter Aadhar Number:</label></b>
+                <input type="text" asp-for="MAadhaarNum" class="form-control" style="background-color:aliceblue" />
+                <span asp-validation-for="MAadhaarNum" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <b><label asp-for="MDob" class="control-label">Enter Date of Birth:</label></b>
+                <input type="date" asp-for="MDob" class="form-control" style="background-color:aliceblue" />
+                <span asp-validation-for="MDob" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <b><label asp-for="Relation" class="control-label">Enter Relation:</label></b>
+                <input type="text" asp-for="Relation" class="form-control" style="background-color:aliceblue" />
+                <span asp-validation-for="Relation" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <b><label asp-for="PhoneNumber" class="control-label">Enter Phone Number:</label></b>
+                <input type="text" asp-for="PhoneNumber" class="form-control" style="background-color:aliceblue" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <b><label asp-for="Email" class="control-label">Enter Email:</label></b>
+                <input type="email" asp-for="Email" class="form-control" style="background-color:aliceblue" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="text-center mt-4">
+                <b><input type="submit" value="Add Member" asp-action="AddFamilyMember" class="btn btn-info" /></b>
+                <a asp-controller="Account" asp-action="ViewSlots" class="btn btn-danger">Cancel</a>
+                <a asp-controller="Account" asp-action="BookSlotForFamilyMember" class="btn btn-secondary">Book Slot For Family</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="container mt-3">
+    @ViewData["v"]
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function () {
+            $('#familyMemberForm').validate({
+                rules: {
+                    MName: {
+                        required: true,
+                        minlength: 3
+                    },
+                    MAadhaarNum: {
+                        required: true,
+                        digits: true,
+                        minlength: 12,
+                        maxlength: 12
+                    },
+                    MDob: {
+                        required: true,
+                        date: true
+                    },
+                    Relation: {
+                        required: true,
+                        minlength: 2
+                    },
+                    PhoneNumber: {
+                        required: true,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 10
+                    },
+                    Email: {
+                        required: true,
+                        email: true
+                    }
+                },
+                messages: {
+                    MName: {
+                        required: "Please enter the family member's name",
+                        minlength: "Name must be at least 3 characters long"
+                    },
+                    MAadhaarNum: {
+                        required: "Please enter the Aadhar number",
+                        digits: "Please enter a valid Aadhar number",
+                        minlength: "Aadhar number must be 12 digits long",
+                        maxlength: "Aadhar number must be 12 digits long"
+                    },
+                    MDob: {
+                        required: "Please enter the date of birth",
+                        date: "Please enter a valid date"
+                    },
+                    Relation: {
+                        required: "Please enter the relation",
+                        minlength: "Relation must be at least 2 characters long"
+                    },
+                    PhoneNumber: {
+                        required: "Please enter the phone number",
+                        digits: "Please enter a valid phone number",
+                        minlength: "Phone number must be 10 digits long",
+                        maxlength: "Phone number must be 10 digits long"
+                    },
+                    Email: {
+                        required: "Please enter the email",
+                        email: "Please enter a valid email address"
+                    }
+                },
+                errorPlacement: function (error, element) {
+                    error.insertAfter(element);
+                }
+            });
+        });
+    </script>
+}

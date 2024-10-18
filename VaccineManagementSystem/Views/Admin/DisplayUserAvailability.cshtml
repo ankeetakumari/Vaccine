@@ -1,0 +1,57 @@
+﻿@{
+    Layout = "_Layout1";
+}
+
+@model List<VaccineManagementSystem.Models.UserTbl>
+
+@{
+    ViewBag.Title = "Search Results";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center text-white bg-primary py-3 rounded">Search Results</h2>
+    <style>
+        body {
+            background-image: url('https://g.foolcdn.com/editorial/images/787474/vaccine-with-world-map.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+    </style>
+    @if (Model != null && Model.Any())
+    {
+        <div class="table-responsive bg-light p-4 rounded shadow">
+            <table class="table table-hover table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>User Name</th>
+                        <th>Phone Number</th>
+                        <th>Email ID</th>
+                        <th>Aadhaar Number</th>
+                        <th>Date of Birth</th>
+                        <th>Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.UserName</td>
+                            <td>@item.PhoneNumber</td>
+                            <td>@item.EmailId</td>
+                            <td>@item.AadhaarNum</td>
+                            <td>@item.Dob.ToString("yyyy-MM-dd")</td>
+                            <td>@item.Address</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning text-center mt-4">
+            User not available.
+        </div>
+    }
+</div>

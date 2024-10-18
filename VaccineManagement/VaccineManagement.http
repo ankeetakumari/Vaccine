@@ -1,0 +1,6 @@
+@VaccineManagement_HostAddress = http://localhost:5117
+
+GET {{VaccineManagement_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

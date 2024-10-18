@@ -1,0 +1,33 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #007bff !important;
+}
+
+.nav-link {
+    color: #007bff !important;
+}
+
+    .nav-link:hover {
+        color: #0056b3 !important;
+    }
+
+.footer {
+    background-color: #f8f9fa;
+}
+
+.footer-logo {
+    height: 40px;
+}
+
+.footer a {
+    color: #007bff !important;
+}
+
+    .footer a:hover {
+        color: #0056b3 !important;
+    }

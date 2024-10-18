@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "LX5/q1HEA++XtAOMWbzk2IKub01Gw04L/faqxUTA8v4=",
+  "Source": "VaccineManagement",
+  "BasePath": "_content/VaccineManagement",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

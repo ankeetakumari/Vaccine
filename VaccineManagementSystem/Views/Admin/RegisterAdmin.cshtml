@@ -1,0 +1,171 @@
+﻿@using VaccineManagementSystem
+@using VaccineManagementSystem.Controllers
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *,DNTCaptcha.Core
+@{
+    Layout = "_Layout1";
+}
+
+@model VaccineManagementSystem.Models.Admintbl;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Registration</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <style>
+        body {
+            background-image: url('https://getwallpapers.com/wallpaper/full/8/b/0/1520379-best-medical-wallpaper-backgrounds-1920x1080-for-phone.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-control {
+            background-color: #f8f9fa;
+            border: 1px solid #ced4da;
+        }
+
+        .btn-info {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+
+            .btn-info:hover {
+                background-color: #138496;
+                border-color: #117a8b;
+            }
+
+        .input-group-text {
+            background-color: #17a2b8;
+            color: white;
+        }
+
+        .register-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="register-header">Admin Registration</h1>
+        <form asp-action="RegisterAdmin" method="post" id="registerForm">
+            <div class="form-group">
+                <label asp-for="AdminName"></label>
+                <input asp-for="AdminName" class="form-control" />
+                <span class="text-danger" asp-validation-for="AdminName"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailId"></label>
+                <input asp-for="EmailId" class="form-control" />
+                <span class="text-danger" asp-validation-for="EmailId"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phonenum"></label>
+                <input asp-for="Phonenum" class="form-control" />
+                <span class="text-danger" asp-validation-for="Phonenum"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" type="password" class="form-control" />
+                <span class="text-danger" asp-validation-for="Password"></span>
+            </div>
+            <div class="form-group">
+                <dnt-captcha asp-captcha-generator-max="999999"
+                             asp-captcha-generator-min="111111"
+                             asp-captcha-generator-language="English"
+                             asp-captcha-generator-display-mode="ShowDigits"
+                             asp-use-relative-urls="true"
+                             asp-placeholder="Enter Captcha"
+                             asp-validation-error-message="Please enter the security code."
+                             asp-font-name="Tahoma"
+                             asp-font-size="20"
+                             asp-fore-color="#333333"
+                             asp-back-color="#ccc"
+                             asp-text-box-class="text-box form-control"
+                             asp-text-box-template="<span class='input-group-prepend'>
+                             <span class='input-group-text'></span></span>{0}"
+                             asp-validation-message-class="text-danger"
+                             asp-refresh-button-class="fas fa-redo btn-sm" asp-use-noise="false" />
+            </div>
+            <button type="submit" class="btn btn-info btn-block">Register</button>
+        </form>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/jquery.unobtrusive-ajax.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#registerForm').validate({
+                rules: {
+                    AdminName: {
+                        required: true,
+                        minlength: 3
+                    },
+                    EmailId: {
+                        required: true,
+                        email: true
+                    },
+                    Phonenum: {
+                        required: true,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 10
+                    },
+                    Password: {
+                        required: true,
+                        minlength: 6
+                    }
+                },
+                messages: {
+                    AdminName: {
+                        required: "Please enter your username",
+                        minlength: "Your username must be at least 3 characters long"
+                    },
+                    EmailId: {
+                        required: "Please enter your email",
+                        email: "Please enter a valid email address"
+                    },
+                    Phonenum: {
+                        required: "Please enter your phone number",
+                        digits: "Please enter a valid phone number",
+                        minlength: "Your phone number must be 10 digits long",
+                        maxlength: "Your phone number must be 10 digits long"
+                    },
+                    Password: {
+                        required: "Please enter your password",
+                        minlength: "Your password must be at least 6 characters long"
+                    }
+                },
+                errorPlacement: function (error, element) {
+                    error.insertAfter(element);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

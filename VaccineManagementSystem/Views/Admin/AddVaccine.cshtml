@@ -1,0 +1,62 @@
+﻿@model VaccineManagementSystem.Models.CommonVaccinetbl
+
+@{
+    ViewData["Title"] = "Add Vaccine";
+}
+
+@{
+    Layout = "_Layout1";
+}
+
+<h2>Add Vaccine</h2>
+<style>
+    body {
+        background-image: url('https://g.foolcdn.com/editorial/images/787474/vaccine-with-world-map.jpg');
+        background-size: cover;
+        background-position: center;
+        color: white;
+    }
+</style>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="VaccineName" class="control-label"></label>
+        <input type="text" asp-for="VaccineName" class="form-control" />
+        <span asp-validation-for="VaccineName" class="text-danger"></span>
+
+        <label asp-for="CompanyName" class="control-label"></label>
+        <input type="text" asp-for="CompanyName" class="form-control" />
+        <span asp-validation-for="CompanyName" class="text-danger"></span>
+
+        <label asp-for="VaccineDesc" class="control-label"></label>
+        <input type="text" asp-for="VaccineDesc" class="form-control" />
+        <span asp-validation-for="VaccineDesc" class="text-danger"></span>
+
+        <label asp-for="VaccineImg" class="control-label">Upload Image</label>
+        <input type="file" asp-for="VaccineImg" class="form-control" />
+        <span asp-validation-for="VaccineImg" class="text-danger"></span>
+
+        <label asp-for="City" class="control-label"></label>
+        <input type="text" asp-for="City" class="form-control" />
+        <span asp-validation-for="City" class="text-danger"></span>
+
+        <label asp-for="State" class="control-label"></label>
+        <input type="text" asp-for="State" class="form-control" />
+        <span asp-validation-for="State" class="text-danger"></span>
+
+        <label asp-for="Qty" class="control-label"></label>
+        <input type="number" asp-for="Qty" class="form-control" />
+        <span asp-validation-for="Qty" class="text-danger"></span>
+
+        <input type="submit" value="Add Vaccine" class="btn btn-primary" />
+        <a asp-action="ViewVaccine" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+
+<div>
+    @ViewData["v"]
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

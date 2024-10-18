@@ -1,0 +1,53 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+@model VaccineManagementSystem.Models.VaccineSlotsTbl
+
+<form method="post">
+    <div class="container mt-5">
+        <h2 class="text-center text-white bg-primary py-3 rounded">Book Vaccination Slot</h2>
+        <style>
+            body {
+                background-image: url('https://g.foolcdn.com/editorial/images/787474/vaccine-with-world-map.jpg');
+                background-size: cover;
+                background-position: center;
+                color: white;
+            }
+        </style>
+        <div class="bg-light p-4 rounded shadow">
+            <div class="form-group">
+                <b><label>Select Date for Vaccination</label></b>
+                <input type="date" asp-for="YearDate" class="form-control" style="background-color:aliceblue" />
+                <span asp-validation-for="YearDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <b><label>Select Time for Vaccination</label></b>
+                <input type="time" asp-for="SlotTime" class="form-control" style="background-color:aliceblue" />
+                <span asp-validation-for="SlotTime" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <b><label>Booked for Family Member:</label></b>
+                <select asp-for="BookedForFamilyMemberId" class="form-control" style="background-color:aliceblue" asp-items="ViewBag.FamilyMembers">
+                    <option value="">Select Family Member</option>
+                </select>
+                <span asp-validation-for="BookedForFamilyMemberId" class="text-danger"></span>
+            </div>
+
+            <div class="text-center">
+                <b><input type="submit" asp-for="IsBooked" value="Book" class="btn btn-info" /></b>
+                <a asp-controller="Account" asp-action="ViewSlots" class="btn btn-danger">Cancel</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    @ViewData["v"]
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

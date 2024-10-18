@@ -1,0 +1,100 @@
+﻿
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Vaccine Management System</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/VaccineManagement.styles.css" asp-append-version="true" />
+    <style>
+        body {
+            background-image: url('https://g.foolcdn.com/editorial/images/787474/vaccine-with-world-map.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .jumbotron {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .btn-primary, .btn-secondary {
+            margin-top: 20px;
+        }
+
+        img {
+            width: 100px;
+            height: 85px;
+            margin-left: 10px;
+            border-radius: 100px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark mb-3">
+            <div class="container-fluid">
+                <img src="~/Images_RLL/Logo.jfif" alt="Vaccine Logo" /><br />
+                <a class="navbar-brand" href="#">Vaccine Management System</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+
+                    @if (Context.Session.GetString("UserSession") != null)
+                    {
+                            <form class="form-inline my-2 my-lg-0">
+                                <div class="input-group">
+                                    <input class="form-control mr-2" type="search" placeholder="Search Vaccine" aria-label="Search" name="vaccineName">
+                                    <input class="form-control mr-2" type="text" placeholder="State" aria-label="State" name="state">
+                                    <input class="form-control mr-2" type="text" placeholder="City" aria-label="City" name="city">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-success" type="submit" asp-area="" asp-controller="Account" asp-action="DisplayAvailability">Search</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout"><b>SignOut</b></a>
+                    }
+                    else
+                    {
+
+                        <a class="nav-link" asp-area="" asp-controller="Account" asp-action="LogIn"><b>SignIn</b></a>
+                        <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Register"><b>SignUp</b></a>
+
+                    }
+
+                </div>
+            </div>
+           
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted py-3" style="margin-top: 900px">
+        <div class="container d-flex justify-content-between align-items-center">
+            <span>© 2024 - VaccineManagement</span>
+
+            <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

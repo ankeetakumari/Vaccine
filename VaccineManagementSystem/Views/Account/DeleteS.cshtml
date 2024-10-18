@@ -1,0 +1,50 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+@model VaccineManagementSystem.Models.VaccineSlotsTbl
+
+<div class="container mt-5">
+    <h2 class="text-center text-white bg-danger py-3 rounded">Delete Vaccine Slot</h2>
+    <style>
+        body {
+            background-image: url('https://g.foolcdn.com/editorial/images/787474/vaccine-with-world-map.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+    </style>
+    <div class="bg-light p-4 rounded shadow">
+        <h3 class="text-center text-danger">Are you sure you want to delete this Slot?</h3>
+        <div class="bg-white p-3 rounded shadow-sm">
+            <h4 class="text-primary">Vaccine Slot Details</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-3">Vaccine Slot</dt>
+                <dd class="col-sm-9">@Model.SId</dd>
+                <dt class="col-sm-3">Booked by UserID</dt>
+                <dd class="col-sm-9">@Model.BookedByUserId</dd>
+                <dt class="col-sm-3">Booked For UserID</dt>
+                <dd class="col-sm-9">@Model.BookedForFamilyMemberId</dd>
+                <dt class="col-sm-3">Slot Booking Time</dt>
+                <dd class="col-sm-9">@Model.SlotTime</dd>
+                <dt class="col-sm-3">Slot Booking Date</dt>
+                <dd class="col-sm-9">@Model.YearDate</dd>
+                <dt class="col-sm-3">City</dt>
+                <dd class="col-sm-9">@Model.City</dd>
+                <dt class="col-sm-3">State</dt>
+                <dd class="col-sm-9">@Model.State</dd>
+            </dl>
+        </div>
+        <div class="text-center mt-4">
+            <form method="post">
+                <button type="submit" class="btn btn-danger">Delete</button>
+                <a asp-action="ViewSlots" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-3">
+    @ViewData["v"]
+</div>
